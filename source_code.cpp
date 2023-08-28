@@ -279,50 +279,42 @@
  } 
   
   
- void sort( node *&pointer) 
- { 
-  
- struct node *a = NULL; 
- struct node *b = NULL; 
- struct node *c = NULL; 
- struct node *e = NULL; 
- struct node *tmp = NULL; 
- while(e != pointer->next) 
- { 
-     c = a = pointer; 
-     b = a->next; 
-     while(a != e) 
-         { 
-             if(strcmp(a->song,a->song)) 
-             { 
-                 if(a == pointer) 
-                 { 
-                     tmp = b -> next; 
-                     b->next = a; 
-                     a->next = tmp; 
-                     pointer = b; 
-                     c = b; 
-                 } 
-             else 
-             { 
-                 tmp = b->next; 
-                 b->next = a; 
-                 a->next = tmp; 
-                 c->next = b; 
-                 c = b; 
-             } 
-         } 
-         else 
-         { 
-             c = a; 
-             a = a->next; 
-         } 
-         b = a->next; 
-         if(b == e) 
-             e = a; 
-         } 
-     } 
- } 
+ void sort(node *&pointer) {
+    struct node *a, *b, *c, *e, *tmp;
+
+    // Set the initial value of e to NULL, as it represents the end of the list
+    e = NULL;
+
+    while (e != pointer->next) {
+        c = a = pointer;
+        b = a->next;
+        
+        while (a != e) {
+            if (strcmp(a->song, b->song) > 0) { // Compare song names
+                if (a == pointer) {
+                    tmp = b->next;
+                    b->next = a;
+                    a->next = tmp;
+                    pointer = b;
+                    c = b;
+                } else {
+                    tmp = b->next;
+                    b->next = a;
+                    a->next = tmp;
+                    c->next = b;
+                    c = b;
+                }
+            } else {
+                c = a;
+                a = a->next;
+            }
+            b = a->next;
+            if (b == e)
+                e = a;
+        }
+    }
+}
+
  void addplaylist(struct node *start) 
  { 
      fstream f1; 
